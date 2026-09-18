@@ -1,0 +1,58 @@
+.journey-topline, .page-title-row { display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+.journey-topline h1, .page-title-row h1 { margin: 12px 0 20px; }
+.journey-totals { min-width: 180px; display: grid; gap: 6px; justify-items: end; padding-bottom: 8px; }
+.journey-totals strong { font: 500 42px 'Geist Mono', monospace; letter-spacing: -.06em; }
+.journey-totals strong span { color: var(--faint); font-size: 14px; }
+.journey-totals .mono { color: var(--faint); font-size: 9px; }
+.focus-strip { margin-top: 48px; display: grid; grid-template-columns: 1.1fr 1fr .7fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.focus-strip > div { min-height: 150px; padding: 18px 18px 20px 0; }
+.focus-strip > div + div { border-left: 1px solid var(--line); padding-left: 22px; }
+.focus-strip .mono { color: var(--faint); font-size: 9px; }
+.focus-strip strong { display: block; margin-top: 12px; font-size: 19px; letter-spacing: -.02em; font-weight: 500; }
+.focus-strip p { margin: 7px 0 0; color: var(--muted); line-height: 1.5; font-size: 12px; }
+.focus-progress { display: flex; flex-direction: column; align-items: stretch; }
+.focus-progress strong { margin-bottom: 9px; }
+.focus-progress .text-link { margin-top: auto; align-self: flex-start; }
+.progress-line { height: 2px; background: #242321; overflow: hidden; }
+.progress-line span { display: block; height: 100%; background: var(--accent); transition: width .35s ease; }
+.graph-section { margin-top: 70px; }
+.graph-section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 18px; }
+.graph-section-head h2 { margin: 9px 0 0; font-size: 30px; }
+.graph-hint { color: var(--faint); font-size: 9px; }
+.graph-viewport { overflow-x: auto; overflow-y: hidden; overscroll-behavior: contain; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #0b0b0b; scrollbar-color: #37332f #0b0b0b; }
+.graph-canvas { position: relative; min-width: max-content; width: max-content; padding: 48px 54px 76px; }
+.graph-board { position: relative; z-index: 1; display: grid; grid-auto-flow: column; grid-auto-columns: 300px; gap: 56px; align-items: start; }
+.graph-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: visible; pointer-events: none; }
+.graph-path { stroke: #2e2b28; stroke-width: 1.15; stroke-linecap: round; stroke-dasharray: 3 5; vector-effect: non-scaling-stroke; }
+.graph-path.complete { stroke: #6b625a; stroke-dasharray: none; }
+.graph-path.current { stroke: var(--accent); stroke-width: 1.35; stroke-dasharray: none; }
+.graph-path.locked { stroke: #1d1b19; }
+.graph-lane { position: relative; width: 300px; }
+.graph-topic-card { display: block; padding: 18px; border: 1px solid var(--line-strong); background: #0e0e0e; transition: border-color .18s ease, transform .18s ease, background .18s ease; }
+.graph-topic-card:hover { border-color: #56514c; background: #111111; transform: translateY(-1px); }
+.graph-lane.state-current .graph-topic-card { border-color: rgba(255,76,103,.72); background: linear-gradient(180deg, rgba(255,76,103,.08), transparent); }
+.graph-lane.state-completed .graph-topic-card { border-color: #46413d; }
+.graph-lane.state-locked .graph-topic-card { opacity: .48; }
+.graph-topic-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.graph-topic-top .mono { color: var(--faint); font-size: 9px; }
+.state-dot { width: 6px; height: 6px; background: var(--faint); border-radius: 50%; }
+.state-dot.completed { background: #a9a39b; }
+.state-dot.current { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.state-dot.locked { background: #393532; }
+.graph-topic-card strong { display: block; font-size: 21px; line-height: 1.05; letter-spacing: -.03em; font-weight: 500; }
+.graph-topic-card p { min-height: 52px; color: var(--muted); font-size: 11px; line-height: 1.5; margin: 10px 0 18px; }
+.graph-topic-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.graph-topic-meta .mono { color: var(--faint); font-size: 8px; }
+.graph-lane.state-completed .graph-topic-meta .mono:last-child { color: #b4afa7; }
+.graph-lane.state-current .graph-topic-meta .mono:last-child { color: var(--accent); }
+.graph-problem-stack { display: grid; gap: 8px; margin-top: 24px; }
+.graph-problem-card { display: grid; grid-template-columns: 18px 1fr auto; gap: 10px; align-items: center; padding: 10px 11px; border: 1px solid var(--line); background: #0c0c0c; transition: border-color .18s ease, background .18s ease, opacity .18s ease; }
+.graph-problem-card:hover { border-color: #4d4945; background: #101010; }
+.graph-problem-card.state-locked { opacity: .38; }
+.graph-problem-card.state-current { border-color: rgba(255,76,103,.7); background: var(--accent-soft); }
+.problem-marker { color: var(--muted); display: grid; place-items: center; }
+.graph-problem-card.state-current .problem-marker { color: var(--accent); }
+.current-marker { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: block; }
+.graph-problem-copy strong { display: block; font-size: 11px; font-weight: 500; line-height: 1.3; }
+.graph-problem-copy small { display: block; margin-top: 3px; color: var(--faint); font-size: 8px; }
+.graph-problem-no { color: #4a4743; font-size: 8px; }

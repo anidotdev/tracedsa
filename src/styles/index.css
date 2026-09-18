@@ -1,0 +1,16 @@
+@import 'lenis/dist/lenis.css';
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600;700&display=swap');
+@import './tokens.css';
+@import './base.css';
+@import './layout.css';
+@import './home.css';
+@import './journey.css';
+@import './detail.css';
+@import './lists.css';
+@import './profile.css';
+@import './auth.css';
+@import './modal.css';
+@import './responsive.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,35 @@
+.back-link { display: inline-flex; color: var(--faint); font-size: 9px; margin-bottom: 34px; }
+.back-link:hover { color: var(--ink); }
+.detail-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; border-bottom: 1px solid var(--line); padding-bottom: 40px; }
+.detail-head h1 { margin: 11px 0 18px; }
+.topic-state { font-size: 9px; color: var(--faint); }
+.detail-progress { width: 230px; padding-bottom: 5px; }
+.detail-progress > .mono { display: block; color: var(--faint); font-size: 9px; margin-bottom: 10px; }
+.detail-body { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(290px, .72fr); gap: 46px; padding-top: 42px; }
+.topic-problems-panel { min-width: 0; }
+.problem-side { min-width: 0; border-left: 1px solid var(--line); padding-left: 30px; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--faint); font-size: 9px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.topic-problem-stack { display: grid; gap: 9px; padding-top: 13px; }
+.problem-box { min-height: 76px; display: grid; grid-template-columns: 34px 1fr auto auto auto; align-items: center; gap: 14px; padding: 14px 15px; border: 1px solid var(--line); background: #0d0d0d; transition: border-color .18s ease, background .18s ease, opacity .18s ease, transform .18s ease; }
+.problem-box:hover { border-color: #504a46; transform: translateY(-1px); }
+.problem-box.selected { border-color: #4c4743; background: #121212; }
+.problem-box.state-current { border-color: rgba(255,76,103,.7); background: var(--accent-soft); }
+.problem-box.state-locked { opacity: .42; }
+.problem-box-index { color: var(--faint); font-size: 9px; }
+.problem-box-copy { min-width: 0; display: grid; gap: 4px; }
+.problem-box-copy strong { font-size: 14px; font-weight: 500; }
+.problem-box-copy .mono { color: var(--faint); font-size: 8px; }
+.problem-box-status { color: #aba59d; display: grid; place-items: center; }
+.problem-box.state-current .problem-box-status { color: var(--accent); }
+.problem-box.state-locked .problem-box-status { color: #59544f; }
+.focus-block { padding: 25px 0 31px; border-bottom: 1px solid var(--line); }
+.focus-status { font-size: 9px; color: var(--faint); }
+.focus-block h2 { font-size: 34px; margin: 13px 0 10px; }
+.focus-meta { color: var(--faint); font-size: 8px; }
+.focus-block p { color: var(--muted); font-size: 12px; line-height: 1.65; margin: 20px 0 0; }
+.focus-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.aside-resources { margin-top: 26px; }
+.resource-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.resource-row > span { min-width: 0; display: grid; gap: 3px; }
+.resource-row small { color: var(--faint); font-size: 8px; }
+.resource-row strong { font-size: 11px; font-weight: 500; }

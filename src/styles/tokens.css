@@ -1,0 +1,17 @@
+:root {
+  font-family: 'Geist', system-ui, sans-serif;
+  color: #f5f2eb;
+  background: #090909;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  --bg: #090909;
+  --surface: #0e0e0e;
+  --surface-2: #111111;
+  --ink: #f5f2eb;
+  --muted: #9d9a93;
+  --faint: #68655f;
+  --line: #262522;
+  --line-strong: #36332f;
+  --accent: #ff4c67;
+  --accent-soft: rgba(255, 76, 103, .11);
+}

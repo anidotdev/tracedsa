@@ -1,0 +1,6 @@
+.profile-stats { margin-top: 70px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); }
+.profile-stats > div { min-height: 190px; padding: 18px 18px 18px 0; display: flex; flex-direction: column; justify-content: space-between; }
+.profile-stats > div + div { border-left: 1px solid var(--line); padding-left: 24px; }
+.profile-stats span { color: var(--faint); font-size: 9px; }
+.profile-stats strong { font: 500 54px 'Geist Mono', monospace; letter-spacing: -.06em; }
+.profile-stats strong small { color: var(--faint); font-size: 12px; letter-spacing: 0; }

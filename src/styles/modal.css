@@ -1,0 +1,25 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, .46);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.modal-card {
+  width: min(420px, 100%);
+  padding: 28px;
+  border: 1px solid var(--line-strong);
+  background: rgba(14, 14, 14, .96);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .28);
+}
+
+.modal-kicker { display: block; margin-bottom: 14px; color: var(--muted); font-size: 9px; }
+.modal-card h2 { margin: 0 0 10px; font-size: 34px; }
+.modal-card p { margin: 0; max-width: 330px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.modal-actions { display: flex; gap: 10px; margin-top: 24px; }
+.modal-actions .button { flex: 1; }

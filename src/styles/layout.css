@@ -1,0 +1,22 @@
+.app-shell { width: min(1480px, calc(100% - 40px)); margin: 24px auto; background: var(--bg); min-height: calc(100vh - 48px); border: 1px solid var(--line); }
+.top-nav { min-height: 66px; padding: 0 24px; display: flex; align-items: center; border-bottom: 1px solid var(--line); position: relative; z-index: 20; }
+.brand { font: 600 12px 'Geist Mono', monospace; letter-spacing: .04em; }
+.nav-links { display: flex; align-items: center; gap: 26px; margin-left: 42px; }
+.nav-link { color: var(--muted); font-size: 12px; transition: color .18s ease; }
+.nav-link:hover, .nav-link.active { color: var(--ink); }
+.nav-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+.xp-link { display: inline-flex; align-items: baseline; gap: 8px; color: var(--muted); font-size: 10px; }
+.xp-link strong { color: var(--ink); font: 500 12px 'Geist Mono', monospace; }
+.profile-chip { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--line-strong); font: 10px 'Geist Mono', monospace; }
+.logout-btn, .mobile-menu { border: 0; background: transparent; color: var(--muted); display: inline-flex; align-items: center; gap: 5px; font-size: 11px; }
+.logout-btn:hover, .mobile-menu:hover { color: var(--ink); }
+.mobile-menu { display: none; }
+.footer-wrap { border-top: 1px solid var(--line); padding: 25px 64px 30px; }
+.built-by { display: flex; align-items: end; justify-content: space-between; gap: 30px; }
+.built-copy { display: grid; gap: 4px; }
+.built-copy .mono { color: var(--faint); font-size: 9px; }
+.built-copy strong { font-size: 11px; font-weight: 500; }
+.built-copy small { color: var(--faint); font-size: 9px; }
+.built-links { display: flex; gap: 20px; }
+.built-links a { color: var(--muted); font-size: 10px; }
+.built-links a:hover { color: var(--ink); }

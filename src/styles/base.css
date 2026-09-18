@@ -1,0 +1,30 @@
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: var(--bg); color: var(--ink); }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: wait; opacity: .65; }
+.mono { font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .02em; }
+.faint { color: var(--faint); }
+main { min-height: 70vh; }
+.page { padding: 74px 64px 96px; }
+h1, h2, h3, p { margin-top: 0; }
+h1 { font-size: clamp(52px, 7vw, 100px); line-height: .95; letter-spacing: -.065em; font-weight: 600; }
+h2 { font-size: clamp(34px, 4vw, 64px); line-height: 1; letter-spacing: -.055em; font-weight: 500; }
+h3 { font-size: 18px; letter-spacing: -.025em; font-weight: 500; }
+.lead { color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 720px; }
+.section-kicker { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
+.button { min-height: 38px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font-size: 11px; transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease; }
+.button:hover { border-color: #514d48; background: var(--surface-2); transform: translateY(-1px); }
+.button-accent { background: var(--accent); border-color: var(--accent); color: #090909; }
+.button-accent:hover { background: #ff6078; border-color: #ff6078; }
+.button-outline { background: transparent; }
+.button-small { min-height: 31px; padding: 0 10px; font-size: 10px; }
+.button.full { width: 100%; }
+.icon-link { color: var(--muted); display: inline-flex; transition: color .18s ease; }
+.icon-link:hover { color: var(--ink); }
+.text-link { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: 12px; margin-top: 18px; }
+.text-link:hover { color: var(--accent); }
+.state-text-current { color: var(--accent) !important; }
+.state-text-completed { color: #b7b1a8 !important; }
