@@ -12,7 +12,7 @@ export function GraphTopicLane({ topic, solved }: { topic: Topic; solved: Set<st
   return (
     <div className={`graph-lane state-${state.toLowerCase()}`}>
       <Link to={`/topic/${topic.slug}`} className="graph-topic-card" data-topic-id={topic.id}>
-        <div className="graph-topic-top"><span className="mono">{String(topic.order_index).padStart(2, '0')}</span><span className={`state-dot ${state.toLowerCase()}`} aria-label={state} /></div>
+        <div className="graph-topic-top"><span className="mono">{String(topic.order_index).padStart(2, '0')}</span></div>
         <strong>{topic.title}</strong>
         <p>{topic.description}</p>
         <div className="graph-topic-meta"><span className="mono">{progress.solved} / {progress.total}</span><span className="mono">{state}</span></div>
