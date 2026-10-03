@@ -2,6 +2,18 @@ import { Link, useLocation } from 'react-router-dom'
 
 export function NavItem({ to, label }) {
   const location = useLocation()
-  const active = to === '/' ? location.pathname === '/' : location.pathname.startsWith(to)
-  return <Link className={active ? 'nav-link active' : 'nav-link'} to={to}>{label}</Link>
+  let active = false
+
+  if (to === '/') {
+    active = location.pathname === '/'
+  } else {
+    active = location.pathname.startsWith(to)
+  }
+
+  let className = 'nav-link'
+  if (active) {
+    className += ' active'
+  }
+
+  return <Link className={className} to={to}>{label}</Link>
 }

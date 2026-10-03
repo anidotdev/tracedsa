@@ -3,7 +3,11 @@ import { useTheme } from '../../hooks/useTheme'
 
 export function ThemeToggle({ className = '' }) {
   const { theme, toggleTheme } = useTheme()
-  const nextTheme = theme === 'dark' ? 'light' : 'dark'
+  let nextTheme = 'dark'
+
+  if (theme === 'dark') {
+    nextTheme = 'light'
+  }
 
   return (
     <button

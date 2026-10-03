@@ -4,16 +4,26 @@ const THEME_KEY = 'trace:theme'
 const DEFAULT_THEME = 'dark'
 
 function getStoredTheme() {
-  if (typeof window === 'undefined') return DEFAULT_THEME
   const stored = window.localStorage.getItem(THEME_KEY)
-  return stored === 'light' || stored === 'dark' ? stored : DEFAULT_THEME
+
+  if (stored === 'light' || stored === 'dark') {
+    return stored
+  }
+
+  return DEFAULT_THEME
 }
 
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme
   document.documentElement.style.colorScheme = theme
+
   const themeColor = document.querySelector('meta[name="theme-color"]')
-  if (themeColor) themeColor.setAttribute('content', theme === 'light' ? '#f5f4ef' : '#090909')
+  if (themeColor) {
+    themeColor.setAttribute(
+      'content',
+      theme === 'light' ? '#f5f4ef' : '#090909',
+    )
+  }
 }
 
 export function useTheme() {
@@ -24,7 +34,16 @@ export function useTheme() {
     window.localStorage.setItem(THEME_KEY, theme)
   }, [theme])
 
-  const toggleTheme = () => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))
+  function toggleTheme() {
+    if (theme === 'dark') {
+      setTheme('light')
+    } else {
+      setTheme('dark')
+    }
+  }
 
-  return { theme, toggleTheme }
+  return {
+    theme,
+    toggleTheme,
+  }
 }

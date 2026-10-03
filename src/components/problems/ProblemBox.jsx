@@ -5,22 +5,53 @@ import { getProblemLinkLabel } from '../../lib/problemLinks'
 import { getProblemStatus } from '../../lib/progress'
 
 export function ProblemBox({ index, problem, solved, selected, onSolved, topicLocked, onSelect }) {
-  const status = topicLocked ? 'LOCKED' : getProblemStatus(problem, problems, solved)
-  const selectable = Boolean(onSelect)
-
-  const handleSelect = () => {
-    onSelect?.(problem)
+  let status = getProblemStatus(problem, problems, solved)
+  if (topicLocked) {
+    status = 'LOCKED'
   }
 
-  const handleKeyDown = (event) => {
-    if (!selectable || (event.key !== 'Enter' && event.key !== ' ')) return
+  const selectable = Boolean(onSelect)
+  let className = `problem-box state-${status.toLowerCase()}`
+
+  if (selected) {
+    className += ' selected'
+  }
+
+  if (selectable) {
+    className += ' is-selectable'
+  }
+
+  function handleSelect() {
+    if (onSelect) {
+      onSelect(problem)
+    }
+  }
+
+  function handleKeyDown(event) {
+    if (!selectable) {
+      return
+    }
+
+    if (event.key !== 'Enter' && event.key !== ' ') {
+      return
+    }
+
     event.preventDefault()
     handleSelect()
   }
 
+  function handleSolved(event) {
+    event.stopPropagation()
+    onSolved(problem)
+  }
+
+  function stopClick(event) {
+    event.stopPropagation()
+  }
+
   return (
     <article
-      className={`problem-box ${selected ? 'selected' : ''} state-${status.toLowerCase()} ${selectable ? 'is-selectable' : ''}`}
+      className={className}
       onClick={selectable ? handleSelect : undefined}
       onKeyDown={selectable ? handleKeyDown : undefined}
       role={selectable ? 'button' : undefined}
@@ -31,7 +62,10 @@ export function ProblemBox({ index, problem, solved, selected, onSolved, topicLo
         {selectable ? (
           <strong>{problem.title}</strong>
         ) : (
-          <Link to={`/topic/${problem.topic_id}?problem=${problem.id}`} onClick={(event) => event.stopPropagation()}>
+          <Link
+            to={`/topic/${problem.topic_id}?problem=${problem.id}`}
+            onClick={stopClick}
+          >
             <strong>{problem.title}</strong>
           </Link>
         )}
@@ -42,21 +76,20 @@ export function ProblemBox({ index, problem, solved, selected, onSolved, topicLo
         {status === 'CURRENT' && <span className="current-marker" />}
         {status === 'LOCKED' && <LockKeyhole size={14} />}
       </div>
+
       {status === 'CURRENT' && (
-        <button
-          className="button button-small"
-          onClick={(event) => { event.stopPropagation(); onSolved(problem) }}
-        >
+        <button className="button button-small" onClick={handleSolved}>
           Mark solved
         </button>
       )}
+
       {status !== 'LOCKED' && (
         <a
           className="icon-link"
           href={problem.url}
           target="_blank"
           rel="noreferrer"
-          onClick={(event) => event.stopPropagation()}
+          onClick={stopClick}
           aria-label={`${getProblemLinkLabel(problem)} for ${problem.title}`}
         >
           <ExternalLink size={14} />

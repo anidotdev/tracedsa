@@ -3,6 +3,18 @@ import { getTopicProgress } from '../../lib/progress'
 
 export function ProgressBar({ topic, solved }) {
   const progress = getTopicProgress(topic, problems, solved)
-  const value = progress.total ? (progress.solved / progress.total) * 100 : 0
-  return <div className="progress-line" aria-label={`${progress.solved} of ${progress.total} solved`}><span style={{ width: `${value}%` }} /></div>
+  let value = 0
+
+  if (progress.total > 0) {
+    value = (progress.solved / progress.total) * 100
+  }
+
+  return (
+    <div
+      className="progress-line"
+      aria-label={`${progress.solved} of ${progress.total} solved`}
+    >
+      <span style={{ width: `${value}%` }} />
+    </div>
+  )
 }

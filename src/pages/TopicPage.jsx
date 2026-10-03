@@ -1,33 +1,45 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { problems, topics } from '../data/curriculum'
-import { getCurrentProblem, getProblemStatus, getProblemsForTopic, getTopicProgress, getTopicStatus } from '../lib/progress'
+import {
+  getCurrentProblem,
+  getProblemStatus,
+  getProblemsForTopic,
+  getTopicProgress,
+  getTopicStatus,
+} from '../lib/progress'
 import { ProgressBar } from '../components/journey/ProgressBar'
 import { ProblemBox } from '../components/problems/ProblemBox'
 import { ProblemFocus } from '../components/problems/ProblemFocus'
 import { ResourcesForTopic } from '../components/resources/ResourcesForTopic'
 
 export function TopicPage({ solved, onSolved }) {
-  const { pathname, search } = useLocation()
+  const location = useLocation()
   const navigate = useNavigate()
-  const slug = pathname.split('/').pop() ?? ''
-  const topic = topics.find((item) => item.slug === slug) ?? topics[0]
-  const selectedProblemId = new URLSearchParams(search).get('problem')
+  const slug = location.pathname.split('/').pop() || ''
+  const topic = topics.find((item) => item.slug === slug) || topics[0]
+  const params = new URLSearchParams(location.search)
+  const selectedProblemId = params.get('problem')
   const topicProblems = getProblemsForTopic(problems, topic.id)
   const currentProblem = getCurrentProblem(topic, problems, solved)
-  const initialSelection = useMemo(
-    () => topicProblems.find((problem) => problem.id === selectedProblemId) ?? currentProblem ?? topicProblems[0],
-    [topicProblems, selectedProblemId, currentProblem],
-  )
-  const [selected, setSelected] = useState(initialSelection)
+
+  let startingProblem = topicProblems.find((problem) => problem.id === selectedProblemId)
+  if (!startingProblem) {
+    startingProblem = currentProblem
+  }
+  if (!startingProblem) {
+    startingProblem = topicProblems[0]
+  }
+
+  const [selected, setSelected] = useState(startingProblem)
   const state = getTopicStatus(topic, topics, problems, solved)
   const progress = getTopicProgress(topic, problems, solved)
 
   useEffect(() => {
-    setSelected(initialSelection)
-  }, [initialSelection])
+    setSelected(startingProblem)
+  }, [startingProblem])
 
-  const selectProblem = (problem) => {
+  function selectProblem(problem) {
     setSelected(problem)
     navigate(`/topic/${topic.slug}?problem=${problem.id}`, { replace: true })
   }

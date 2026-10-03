@@ -10,7 +10,7 @@ export function AuthPage({ onAuthed }) {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const submit = async (event) => {
+  async function submit(event) {
     event.preventDefault()
     setError('')
     setLoading(true)
@@ -21,35 +21,65 @@ export function AuthPage({ onAuthed }) {
       return
     }
 
-    const result = mode === 'login'
-      ? await supabase.auth.signInWithPassword({ email, password })
-      : await supabase.auth.signUp({ email, password })
+    let result
 
-    if (result.error) setError(result.error.message)
-    else if (mode === 'signup' && !result.data.session) setError('Account created. Check your email to confirm the address.')
-    else onAuthed()
+    if (mode === 'login') {
+      result = await supabase.auth.signInWithPassword({ email, password })
+    } else {
+      result = await supabase.auth.signUp({ email, password })
+    }
+
+    if (result.error) {
+      setError(result.error.message)
+    } else if (mode === 'signup' && !result.data.session) {
+      setError('Account created. Check your email to confirm the address.')
+    } else {
+      onAuthed()
+    }
 
     setLoading(false)
   }
 
-  const google = async () => {
+  async function google() {
     setError('')
+
     if (!supabase) {
       setError('Google sign-in requires Supabase configuration.')
       return
     }
 
-    const { error: oauthError } = await supabase.auth.signInWithOAuth({
+    const result = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: window.location.origin },
+      options: {
+        redirectTo: window.location.origin,
+      },
     })
 
-    if (oauthError) setError(oauthError.message)
+    if (result.error) {
+      setError(result.error.message)
+    }
   }
 
-  const switchMode = () => {
-    setMode((current) => current === 'login' ? 'signup' : 'login')
+  function switchMode() {
+    if (mode === 'login') {
+      setMode('signup')
+    } else {
+      setMode('login')
+    }
+
     setError('')
+  }
+
+  let kicker = 'WELCOME BACK'
+  let title = 'Continue the path.'
+  let buttonText = 'Login'
+  let switchText = 'Need an account? Sign up'
+
+  if (mode === 'signup') {
+    kicker = 'CREATE ACCOUNT'
+    title = 'Start the path.'
+    buttonText = 'Sign up'
+    switchText = 'Already have an account? Login'
   }
 
   return (
@@ -57,20 +87,49 @@ export function AuthPage({ onAuthed }) {
       <ThemeToggle className="auth-theme-toggle" />
       <div className="auth-panel">
         <Link to="/" className="auth-brand mono">TRACE</Link>
-        <span className="mono section-kicker">{mode === 'login' ? 'WELCOME BACK' : 'CREATE ACCOUNT'}</span>
-        <h1>{mode === 'login' ? 'Continue the path.' : 'Start the path.'}</h1>
+        <span className="mono section-kicker">{kicker}</span>
+        <h1>{title}</h1>
         <p className="lead">Your position is derived from what you have actually solved.</p>
 
         <form onSubmit={submit}>
-          <label>Email<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required placeholder="you@example.com" /></label>
-          <label>Password<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required minLength={6} placeholder="••••••••" /></label>
+          <label>
+            Email
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+              placeholder="you@example.com"
+            />
+          </label>
+
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              minLength={6}
+              placeholder="••••••••"
+            />
+          </label>
+
           {error && <p className="form-error">{error}</p>}
-          <button className="button button-accent full" disabled={loading}>{loading ? 'Please wait' : mode === 'login' ? 'Login' : 'Sign up'}</button>
+
+          <button className="button button-accent full" disabled={loading}>
+            {loading ? 'Please wait' : buttonText}
+          </button>
         </form>
 
         <div className="auth-divider mono">OR</div>
 
-        <button className="button button-outline full google-button" onClick={google} disabled={loading} type="button">
+        <button
+          className="button button-outline full google-button"
+          onClick={google}
+          disabled={loading}
+          type="button"
+        >
           <svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15">
             <path fill="currentColor" d="M21.35 12.23c0-.7-.06-1.37-.18-2H12v3.79h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.69 2.91-4.18 2.91-7.18Z" />
             <path fill="currentColor" d="M12 21.64c2.64 0 4.86-.87 6.48-2.36l-3.14-2.45c-.87.58-1.98.93-3.34.93-2.56 0-4.73-1.73-5.5-4.05H3.25v2.53A9.8 9.8 0 0 0 12 21.64Z" />
@@ -80,7 +139,9 @@ export function AuthPage({ onAuthed }) {
           Continue with Google
         </button>
 
-        <button className="auth-switch mono" onClick={switchMode}>{mode === 'login' ? 'Need an account? Sign up' : 'Already have an account? Login'}</button>
+        <button className="auth-switch mono" onClick={switchMode}>
+          {switchText}
+        </button>
       </div>
     </div>
   )

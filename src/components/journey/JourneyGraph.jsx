@@ -8,23 +8,48 @@ import { GraphTopicLane } from './GraphTopicLane'
 export function JourneyGraph({ solved }) {
   const graphViewportRef = useRef(null)
   const graphRef = useRef(null)
+
   useHorizontalLenis(graphViewportRef, graphRef)
+
   const paths = useJourneyPaths(graphRef, solved)
   const currentTopic = getCurrentTopic(topics, problems, solved)
+
+  let heading = 'The path is complete.'
+  if (currentTopic) {
+    heading = `You're in ${currentTopic.title}.`
+  }
 
   return (
     <section className="graph-section">
       <div className="graph-section-head">
-        <div><span className="mono section-kicker">THE PATH</span><h2>{currentTopic ? `You're in ${currentTopic.title}.` : 'The path is complete.'}</h2></div>
+        <div>
+          <span className="mono section-kicker">THE PATH</span>
+          <h2>{heading}</h2>
+        </div>
         <span className="mono graph-hint">SWIPE SIDEWAYS TO EXPLORE</span>
       </div>
+
       <div className="graph-viewport" ref={graphViewportRef}>
         <div className="graph-canvas" ref={graphRef}>
           <svg className="graph-svg" aria-hidden="true" focusable="false">
-            {paths.map((path, index) => <path key={`${path.d}-${index}`} className={`graph-path ${path.kind}`} d={path.d} fill="none" />)}
+            {paths.map((path, index) => (
+              <path
+                key={`${path.d}-${index}`}
+                className={`graph-path ${path.kind}`}
+                d={path.d}
+                fill="none"
+              />
+            ))}
           </svg>
+
           <div className="graph-board">
-            {topics.map((topic) => <GraphTopicLane key={topic.id} topic={topic} solved={solved} />)}
+            {topics.map((topic) => (
+              <GraphTopicLane
+                key={topic.id}
+                topic={topic}
+                solved={solved}
+              />
+            ))}
           </div>
         </div>
       </div>

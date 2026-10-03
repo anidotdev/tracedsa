@@ -2,6 +2,33 @@ import { problems, topics } from '../data/curriculum'
 import { getTopicStatus } from '../lib/progress'
 
 export function ProfilePage({ userName, xp, solved }) {
-  const completedTopics = topics.filter((topic) => getTopicStatus(topic, topics, problems, solved) === 'COMPLETED').length
-  return <section className="page profile-page"><span className="mono section-kicker">PROFILE</span><h1>{userName}</h1><div className="profile-stats"><div><span className="mono">XP</span><strong>{xp}</strong></div><div><span className="mono">PROBLEMS</span><strong>{solved.size}<small> / {problems.length}</small></strong></div><div><span className="mono">TOPICS</span><strong>{completedTopics}<small> / {topics.length}</small></strong></div></div></section>
+  let completedTopics = 0
+
+  for (const topic of topics) {
+    const status = getTopicStatus(topic, topics, problems, solved)
+    if (status === 'COMPLETED') {
+      completedTopics += 1
+    }
+  }
+
+  return (
+    <section className="page profile-page">
+      <span className="mono section-kicker">PROFILE</span>
+      <h1>{userName}</h1>
+      <div className="profile-stats">
+        <div>
+          <span className="mono">XP</span>
+          <strong>{xp}</strong>
+        </div>
+        <div>
+          <span className="mono">PROBLEMS</span>
+          <strong>{solved.size}<small> / {problems.length}</small></strong>
+        </div>
+        <div>
+          <span className="mono">TOPICS</span>
+          <strong>{completedTopics}<small> / {topics.length}</small></strong>
+        </div>
+      </div>
+    </section>
+  )
 }

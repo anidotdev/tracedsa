@@ -6,7 +6,14 @@ import { getCurrentProblem, getCurrentTopic, getTopicStatus } from '../lib/progr
 export function HomePage({ solved }) {
   const currentTopic = getCurrentTopic(topics, problems, solved)
   const currentProblem = getCurrentProblem(currentTopic, problems, solved)
-  const completedTopics = topics.filter((topic) => getTopicStatus(topic, topics, problems, solved) === 'COMPLETED').length
+  let completedTopics = 0
+
+  for (const topic of topics) {
+    const status = getTopicStatus(topic, topics, problems, solved)
+    if (status === 'COMPLETED') {
+      completedTopics += 1
+    }
+  }
 
   return (
     <section className="home-page">

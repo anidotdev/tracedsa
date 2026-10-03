@@ -14,72 +14,187 @@ import { getTopicProgress, getProblemStatus } from './lib/progress'
 import { loadSolved, loadXp, saveSolved, saveXp } from './lib/storage'
 import { supabase } from './lib/supabase'
 
+function getStartingSolved() {
+  if (hasSupabaseEnv) {
+    return new Set()
+  }
+
+  const saved = loadSolved()
+  if (saved.size > 0) {
+    return saved
+  }
+
+  return new Set(demoSolvedIds)
+}
+
+function getStartingXp() {
+  if (hasSupabaseEnv) {
+    return 0
+  }
+
+  const saved = loadXp()
+  if (saved > 0) {
+    return saved
+  }
+
+  return demoXp
+}
+
+function getUserName(session) {
+  if (!session) {
+    return APP_CONFIG.builtBy
+  }
+
+  if (session.user.user_metadata?.full_name) {
+    return session.user.user_metadata.full_name
+  }
+
+  if (session.user.email) {
+    return session.user.email.split('@')[0]
+  }
+
+  return APP_CONFIG.builtBy
+}
+
 export default function App() {
-  const [solved, setSolved] = useState(() => hasSupabaseEnv ? new Set() : (loadSolved().size ? loadSolved() : new Set(demoSolvedIds)))
-  const [xp, setXp] = useState(() => hasSupabaseEnv ? 0 : (loadXp() || demoXp))
+  const [solved, setSolved] = useState(getStartingSolved)
+  const [xp, setXp] = useState(getStartingXp)
   const [userName, setUserName] = useState(APP_CONFIG.builtBy)
-  const [authLoading, setAuthLoading] = useState(Boolean(hasSupabaseEnv))
+  const [authLoading, setAuthLoading] = useState(hasSupabaseEnv)
   const [authed, setAuthed] = useState(!hasSupabaseEnv)
 
   useEffect(() => {
-    if (!supabase) return undefined
+    if (!supabase) {
+      return undefined
+    }
+
     supabase.auth.getSession().then(({ data }) => {
       setAuthed(Boolean(data.session))
       setAuthLoading(false)
-      setUserName(data.session?.user.user_metadata?.full_name ?? data.session?.user.email?.split('@')[0] ?? APP_CONFIG.builtBy)
+      setUserName(getUserName(data.session))
     })
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
       setAuthed(Boolean(session))
-      setUserName(session?.user.user_metadata?.full_name ?? session?.user.email?.split('@')[0] ?? APP_CONFIG.builtBy)
+      setUserName(getUserName(session))
     })
-    return () => listener.subscription.unsubscribe()
+
+    return () => data.subscription.unsubscribe()
   }, [])
 
   useEffect(() => {
-    if (!supabase || !authed) return undefined
-    const load = async () => {
-      const { data: progressRows } = await supabase.from('user_problem_progress').select('problem_id')
-      if (progressRows) setSolved(new Set(progressRows.map((row) => row.problem_id)))
-      const { data: profile } = await supabase.from('profiles').select('xp,display_name').single()
-      if (profile?.xp != null) setXp(profile.xp)
-      if (profile?.display_name) setUserName(profile.display_name)
+    if (!supabase || !authed) {
+      return undefined
     }
-    void load()
+
+    async function loadUserData() {
+      const { data: progressRows } = await supabase
+        .from('user_problem_progress')
+        .select('problem_id')
+
+      if (progressRows) {
+        const solvedIds = progressRows.map((row) => row.problem_id)
+        setSolved(new Set(solvedIds))
+      }
+
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('xp,display_name')
+        .single()
+
+      if (profile?.xp != null) {
+        setXp(profile.xp)
+      }
+
+      if (profile?.display_name) {
+        setUserName(profile.display_name)
+      }
+    }
+
+    loadUserData()
   }, [authed])
 
-  const handleSolved = async (problem) => {
-    if (solved.has(problem.id) || getProblemStatus(problem, problems, solved) !== 'CURRENT') return
+  async function handleSolved(problem) {
+    if (solved.has(problem.id)) {
+      return
+    }
+
+    const status = getProblemStatus(problem, problems, solved)
+    if (status !== 'CURRENT') {
+      return
+    }
+
     if (supabase && authed) {
-      const { data, error } = await supabase.rpc('complete_problem', { p_problem_id: problem.id })
+      const { data, error } = await supabase.rpc('complete_problem', {
+        p_problem_id: problem.id,
+      })
+
       if (error) {
         window.alert(error.message)
         return
       }
-      setSolved((previous) => new Set(previous).add(problem.id))
-      if (typeof data?.xp === 'number') setXp(data.xp)
+
+      const nextSolved = new Set(solved)
+      nextSolved.add(problem.id)
+      setSolved(nextSolved)
+
+      if (typeof data?.xp === 'number') {
+        setXp(data.xp)
+      }
+
       return
     }
-    const next = new Set(solved).add(problem.id)
-    const award = problem.difficulty === 'EASY' ? 10 : problem.difficulty === 'MEDIUM' ? 20 : 30
+
+    const nextSolved = new Set(solved)
+    nextSolved.add(problem.id)
+
     const topic = topics.find((item) => item.id === problem.topic_id)
-    if (!topic) return
+    if (!topic) {
+      return
+    }
+
     const before = getTopicProgress(topic, problems, solved)
-    const after = getTopicProgress(topic, problems, next)
-    const topicBonus = before.solved < before.total && after.solved === after.total ? 50 : 0
-    const nextXp = xp + award + topicBonus
-    setSolved(next)
+    const after = getTopicProgress(topic, problems, nextSolved)
+
+    let problemXp = 30
+    if (problem.difficulty === 'EASY') {
+      problemXp = 10
+    } else if (problem.difficulty === 'MEDIUM') {
+      problemXp = 20
+    }
+
+    let topicBonus = 0
+    if (before.solved < before.total && after.solved === after.total) {
+      topicBonus = 50
+    }
+
+    const nextXp = xp + problemXp + topicBonus
+
+    setSolved(nextSolved)
     setXp(nextXp)
-    saveSolved(next)
+    saveSolved(nextSolved)
     saveXp(nextXp)
   }
 
-  const logout = async () => {
-    if (supabase) await supabase.auth.signOut()
+  async function logout() {
+    if (supabase) {
+      await supabase.auth.signOut()
+    }
+
     setAuthed(false)
   }
 
-  if (authLoading) return <div className="boot-screen"><span className="mono">LOADING</span></div>
-  if (!authed) return <AuthPage onAuthed={() => setAuthed(true)} />
+  if (authLoading) {
+    return (
+      <div className="boot-screen">
+        <span className="mono">LOADING</span>
+      </div>
+    )
+  }
+
+  if (!authed) {
+    return <AuthPage onAuthed={() => setAuthed(true)} />
+  }
 
   return (
     <AppShell xp={xp} userName={userName} logout={logout}>
