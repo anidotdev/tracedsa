@@ -1,19 +1,16 @@
-import { useEffect, type RefObject } from 'react'
+import { useEffect } from 'react'
 import Lenis from 'lenis'
 
 const DESKTOP_QUERY = '(min-width: 821px)'
 
-export function useHorizontalLenis(
-  wrapperRef: RefObject<HTMLElement | null>,
-  contentRef: RefObject<HTMLElement | null>,
-) {
+export function useHorizontalLenis(wrapperRef, contentRef) {
   useEffect(() => {
     const wrapper = wrapperRef.current
     const content = contentRef.current
-    if (!wrapper || !content) return
+    if (!wrapper || !content) return undefined
 
     const media = window.matchMedia(DESKTOP_QUERY)
-    if (!media.matches) return
+    if (!media.matches) return undefined
 
     const lenis = new Lenis({
       wrapper,
@@ -27,8 +24,6 @@ export function useHorizontalLenis(
       respectReducedMotion: true,
     })
 
-    return () => {
-      lenis.destroy()
-    }
+    return () => lenis.destroy()
   }, [wrapperRef, contentRef])
 }

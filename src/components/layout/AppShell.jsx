@@ -1,13 +1,15 @@
-import { useState, type ReactNode } from 'react'
+import { useState } from 'react'
 import { LogOut, Menu, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { BuiltBy } from './BuiltBy'
 import { NavItem } from './NavItem'
 import { LogoutDialog } from './LogoutDialog'
+import { ThemeToggle } from './ThemeToggle'
 
-export function AppShell({ children, xp, userName, logout }: { children: ReactNode; xp: number; userName: string; logout: () => void }) {
+export function AppShell({ children, xp, userName, logout }) {
   const [mobileNav, setMobileNav] = useState(false)
   const [logoutOpen, setLogoutOpen] = useState(false)
+
   return (
     <div className="app-shell">
       <header className="top-nav">
@@ -19,6 +21,7 @@ export function AppShell({ children, xp, userName, logout }: { children: ReactNo
           <NavItem to="/resources" label="Resources" />
         </nav>
         <div className="nav-right">
+          <ThemeToggle />
           <Link to="/profile" className="xp-link"><span className="mono">XP</span><strong>{xp}</strong></Link>
           <Link to="/profile" className="profile-chip" aria-label={`Open ${userName}'s profile`}>{userName.slice(0, 1).toUpperCase()}</Link>
           <button className="logout-btn" onClick={() => setLogoutOpen(true)}><LogOut size={13} /><span>Logout</span></button>

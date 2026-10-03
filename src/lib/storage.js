@@ -1,7 +1,7 @@
 const SOLVED_KEY = 'dsa-journey:solved'
 const XP_KEY = 'dsa-journey:xp'
 
-export function loadSolved(): Set<string> {
+export function loadSolved() {
   try {
     const parsed = JSON.parse(localStorage.getItem(SOLVED_KEY) ?? '[]')
     return new Set(Array.isArray(parsed) ? parsed : [])
@@ -10,7 +10,7 @@ export function loadSolved(): Set<string> {
   }
 }
 
-export function saveSolved(ids: Set<string>) {
+export function saveSolved(ids) {
   localStorage.setItem(SOLVED_KEY, JSON.stringify([...ids]))
 }
 
@@ -19,6 +19,6 @@ export function loadXp() {
   return Number.isFinite(value) && value > 0 ? value : 0
 }
 
-export function saveXp(xp: number) {
+export function saveXp(xp) {
   localStorage.setItem(XP_KEY, String(xp))
 }

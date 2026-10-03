@@ -1,15 +1,15 @@
-import { useEffect, type MouseEvent } from 'react'
+import { useEffect } from 'react'
 
-export function LogoutDialog({ onCancel, onConfirm }: { onCancel: () => void; onConfirm: () => void }) {
+export function LogoutDialog({ onCancel, onConfirm }) {
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (event) => {
       if (event.key === 'Escape') onCancel()
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [onCancel])
 
-  const stopPropagation = (event: MouseEvent<HTMLDivElement>) => event.stopPropagation()
+  const stopPropagation = (event) => event.stopPropagation()
 
   return (
     <div className="modal-backdrop" role="presentation" onMouseDown={onCancel}>

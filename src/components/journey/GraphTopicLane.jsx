@@ -2,13 +2,13 @@ import { Check, LockKeyhole } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { problems, topics } from '../../data/curriculum'
 import { getProblemStatus, getProblemsForTopic, getTopicProgress, getTopicStatus } from '../../lib/progress'
-import type { Topic } from '../../types/domain'
 import { ProgressBar } from './ProgressBar'
 
-export function GraphTopicLane({ topic, solved }: { topic: Topic; solved: Set<string> }) {
+export function GraphTopicLane({ topic, solved }) {
   const state = getTopicStatus(topic, topics, problems, solved)
   const progress = getTopicProgress(topic, problems, solved)
   const topicProblems = getProblemsForTopic(problems, topic.id)
+
   return (
     <div className={`graph-lane state-${state.toLowerCase()}`}>
       <Link to={`/topic/${topic.slug}`} className="graph-topic-card" data-topic-id={topic.id}>

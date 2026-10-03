@@ -1,8 +1,7 @@
 import { ArrowUpRight, Check } from 'lucide-react'
-import type { Problem, NodeState } from '../../types/domain'
 import { getProblemLinkLabel } from '../../lib/problemLinks'
 
-export function ProblemFocus({ problem, status, onSolved }: { problem: Problem; status: NodeState; onSolved: (problem: Problem) => void }) {
+export function ProblemFocus({ problem, status, onSolved }) {
   return (
     <div className="focus-block">
       <span className={`mono focus-status state-text-${status.toLowerCase()}`}>{status}</span>

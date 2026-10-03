@@ -7,4 +7,7 @@ export const APP_CONFIG = {
   portfolio: 'https://anidotdev.pages.dev/',
 }
 
-export const hasSupabaseEnv = Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY)
+export const hasSupabaseEnv = Boolean(
+  import.meta.env.VITE_SUPABASE_URL &&
+  (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY),
+)

@@ -1,5 +1,3 @@
-import type { Problem, Resource, Topic } from '../types/domain'
-
 const topicDefs = [
   ['foundations-complexity', 'Time & Space Complexity', 'Reason about the cost of your code before you write more of it.'],
   ['arrays', 'Arrays', 'Indexing, traversal, in-place operations and contiguous data.'],
@@ -27,9 +25,9 @@ const topicDefs = [
   ['topological-sort', 'Topological Sort', 'Order dependency graphs with directed acyclic structure.'],
   ['dynamic-programming', 'Dynamic Programming', 'Reuse overlapping subproblem results systematically.'],
   ['advanced-dp', 'Advanced DP', 'State compression, dimensions and harder transitions.'],
-] as const
+]
 
-export const topics: Topic[] = topicDefs.map(([slug, title, description], i) => ({
+export const topics = topicDefs.map(([slug, title, description], i) => ({
   id: slug,
   title,
   slug,
@@ -39,7 +37,7 @@ export const topics: Topic[] = topicDefs.map(([slug, title, description], i) => 
 
 // Each topic's problems are ordered easy -> medium so the ladder inside
 // a topic is itself a progression, not just a flat bucket of one difficulty.
-const problemDefs: Array<[string, string, string, Problem['difficulty'], string, string]> = [
+const problemDefs = [
   // foundations-complexity
   ['p-000', 'foundations-complexity', 'Life, the Universe, and Everything', 'EASY', 'CodeChef', 'https://www.codechef.com/problems/TEST'],
   ['p-100', 'foundations-complexity', 'Enormous Input Test', 'EASY', 'CodeChef', 'https://www.codechef.com/problems/INTEST'],
@@ -205,7 +203,7 @@ const problemDefs: Array<[string, string, string, Problem['difficulty'], string,
   ['p-178', 'advanced-dp', 'Longest Common Subsequence', 'MEDIUM', 'LeetCode', 'https://leetcode.com/problems/longest-common-subsequence/'],
 ]
 
-export const problems: Problem[] = problemDefs.map(([id, topic_id, title, difficulty, platform, url], i) => ({
+export const problems = problemDefs.map(([id, topic_id, title, difficulty, platform, url], i) => ({
   id, topic_id, title, difficulty, platform, url, required: true, order_index: i + 1,
 }))
 
@@ -220,13 +218,13 @@ const resourceSeed = [
   ['trees', 'Tree Traversals', 'REFERENCE', 'cppreference', 'https://en.cppreference.com/'],
   ['graphs', 'Graph Traversal', 'VIDEO', 'William Fiset', 'https://www.youtube.com/@WilliamFiset'],
   ['dynamic-programming', 'Dynamic Programming Notes', 'NOTES', 'cp-algorithms', 'https://cp-algorithms.com/dynamic_programming/intro-to-dp.html'],
-] as const
+]
 
-export const resources: Resource[] = resourceSeed.map(([topic_id, title, type, source, url], i) => ({
-  id: `r-${i + 1}`, topic_id, title, type: type as Resource['type'], source, url, order_index: i + 1,
+export const resources = resourceSeed.map(([topic_id, title, type, source, url], i) => ({
+  id: `r-${i + 1}`, topic_id, title, type, source, url, order_index: i + 1,
 }))
 
-export const topicPrerequisites: Array<[string, string]> = topics.slice(1).map((topic, i) => [topic.id, topics[i].id])
+export const topicPrerequisites = topics.slice(1).map((topic, i) => [topic.id, topics[i].id])
 
 // Demo state mirrors the brief: Hashing is current with 4/7 completed.
 export const demoSolvedIds = new Set(['p-000', 'p-001', 'p-002', 'p-003', 'p-004', 'p-005', 'p-006', 'p-007', 'p-008', 'p-009', 'p-010', 'p-011', 'p-012'])

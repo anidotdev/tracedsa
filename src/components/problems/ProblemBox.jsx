@@ -1,30 +1,10 @@
-import type { KeyboardEvent } from 'react'
 import { Check, ExternalLink, LockKeyhole } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { problems } from '../../data/curriculum'
 import { getProblemLinkLabel } from '../../lib/problemLinks'
 import { getProblemStatus } from '../../lib/progress'
-import type { Problem } from '../../types/domain'
 
-type ProblemBoxProps = {
-  index: number
-  problem: Problem
-  solved: Set<string>
-  selected: boolean
-  onSolved: (problem: Problem) => void
-  topicLocked: boolean
-  onSelect?: (problem: Problem) => void
-}
-
-export function ProblemBox({
-  index,
-  problem,
-  solved,
-  selected,
-  onSolved,
-  topicLocked,
-  onSelect,
-}: ProblemBoxProps) {
+export function ProblemBox({ index, problem, solved, selected, onSolved, topicLocked, onSelect }) {
   const status = topicLocked ? 'LOCKED' : getProblemStatus(problem, problems, solved)
   const selectable = Boolean(onSelect)
 
@@ -32,7 +12,7 @@ export function ProblemBox({
     onSelect?.(problem)
   }
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+  const handleKeyDown = (event) => {
     if (!selectable || (event.key !== 'Enter' && event.key !== ' ')) return
     event.preventDefault()
     handleSelect()

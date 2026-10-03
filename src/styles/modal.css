@@ -5,7 +5,7 @@
   display: grid;
   place-items: center;
   padding: 24px;
-  background: rgba(0, 0, 0, .46);
+  background: var(--modal-backdrop);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -14,8 +14,8 @@
   width: min(420px, 100%);
   padding: 28px;
   border: 1px solid var(--line-strong);
-  background: rgba(14, 14, 14, .96);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, .28);
+  background: var(--modal-surface);
+  box-shadow: 0 24px 80px var(--shadow);
 }
 
 .modal-kicker { display: block; margin-bottom: 14px; color: var(--muted); font-size: 9px; }

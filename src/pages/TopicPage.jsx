@@ -6,9 +6,8 @@ import { ProgressBar } from '../components/journey/ProgressBar'
 import { ProblemBox } from '../components/problems/ProblemBox'
 import { ProblemFocus } from '../components/problems/ProblemFocus'
 import { ResourcesForTopic } from '../components/resources/ResourcesForTopic'
-import type { Problem } from '../types/domain'
 
-export function TopicPage({ solved, onSolved }: { solved: Set<string>; onSolved: (problem: Problem) => void }) {
+export function TopicPage({ solved, onSolved }) {
   const { pathname, search } = useLocation()
   const navigate = useNavigate()
   const slug = pathname.split('/').pop() ?? ''
@@ -20,7 +19,7 @@ export function TopicPage({ solved, onSolved }: { solved: Set<string>; onSolved:
     () => topicProblems.find((problem) => problem.id === selectedProblemId) ?? currentProblem ?? topicProblems[0],
     [topicProblems, selectedProblemId, currentProblem],
   )
-  const [selected, setSelected] = useState<Problem | undefined>(initialSelection)
+  const [selected, setSelected] = useState(initialSelection)
   const state = getTopicStatus(topic, topics, problems, solved)
   const progress = getTopicProgress(topic, problems, solved)
 
@@ -28,7 +27,7 @@ export function TopicPage({ solved, onSolved }: { solved: Set<string>; onSolved:
     setSelected(initialSelection)
   }, [initialSelection])
 
-  const selectProblem = (problem: Problem) => {
+  const selectProblem = (problem) => {
     setSelected(problem)
     navigate(`/topic/${topic.slug}?problem=${problem.id}`, { replace: true })
   }

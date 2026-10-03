@@ -1,11 +1,8 @@
-import { useLayoutEffect, useState, type RefObject } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { getProblemStatus, getProblemsForTopic, getTopicStatus } from '../lib/progress'
 import { problems, topics } from '../data/curriculum'
 
-type GraphPath = { d: string; kind: 'complete' | 'current' | 'locked' }
-type Point = { left: number; right: number; top: number; bottom: number; cx: number; cy: number }
-
-function getPoint(element: HTMLElement, root: DOMRect): Point {
+function getPoint(element, root) {
   const rect = element.getBoundingClientRect()
   return {
     left: rect.left - root.left,
@@ -17,7 +14,7 @@ function getPoint(element: HTMLElement, root: DOMRect): Point {
   }
 }
 
-function curve(a: Point, b: Point, compact = false) {
+function curve(a, b, compact = false) {
   const horizontal = Math.abs(b.cx - a.cx) >= Math.abs(b.cy - a.cy)
   if (horizontal) {
     const bend = compact ? 24 : 70
@@ -27,24 +24,24 @@ function curve(a: Point, b: Point, compact = false) {
   return `M ${a.cx} ${a.bottom} C ${a.cx} ${a.bottom + bend}, ${b.cx} ${b.top - bend}, ${b.cx} ${b.top}`
 }
 
-export function useJourneyPaths(rootRef: RefObject<HTMLElement | null>, solved: Set<string>) {
-  const [paths, setPaths] = useState<GraphPath[]>([])
+export function useJourneyPaths(rootRef, solved) {
+  const [paths, setPaths] = useState([])
 
   useLayoutEffect(() => {
     const root = rootRef.current
-    if (!root) return
+    if (!root) return undefined
 
     const measure = () => {
       const graphRect = root.getBoundingClientRect()
       if (!graphRect.width || !graphRect.height) return
 
-      const topicElements = Array.from(root.querySelectorAll<HTMLElement>('[data-topic-id]'))
-      const pointFor = (selector: string) => {
-        const el = root.querySelector<HTMLElement>(selector)
+      const topicElements = Array.from(root.querySelectorAll('[data-topic-id]'))
+      const pointFor = (selector) => {
+        const el = root.querySelector(selector)
         return el ? getPoint(el, graphRect) : null
       }
 
-      const next: GraphPath[] = []
+      const next = []
 
       for (let i = 0; i < topics.length - 1; i += 1) {
         const a = pointFor(`[data-topic-id="${topics[i].id}"]`)

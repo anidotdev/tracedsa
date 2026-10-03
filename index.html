@@ -4,7 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000000" />
-    <title>DSA Journey</title>
+    <script>
+      (() => {
+        try {
+          const theme = localStorage.getItem('trace:theme')
+          if (theme === 'light') {
+            document.documentElement.dataset.theme = 'light'
+            document.documentElement.style.colorScheme = 'light'
+            document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f5f4ef')
+          }
+        } catch {}
+      })()
+    </script>
+    <title>TRACE — Know what to solve next.</title>
 
     <link rel="icon" type="image/png" href="/trace.png" />
 
@@ -37,6 +49,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

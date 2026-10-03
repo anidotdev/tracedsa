@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { problems, topics } from '../data/curriculum'
 import { getCurrentProblem, getCurrentTopic, getTopicStatus } from '../lib/progress'
 
-export function HomePage({ solved }: { solved: Set<string> }) {
+export function HomePage({ solved }) {
   const currentTopic = getCurrentTopic(topics, problems, solved)
   const currentProblem = getCurrentProblem(currentTopic, problems, solved)
   const completedTopics = topics.filter((topic) => getTopicStatus(topic, topics, problems, solved) === 'COMPLETED').length
@@ -35,7 +35,7 @@ export function HomePage({ solved }: { solved: Set<string> }) {
       </section>
 
       <section className="home-section home-snapshot">
-        <div className="snapshot-copy"><span className="mono section-kicker">YOUR NEXT MOVE</span><h2>{currentProblem ? currentProblem.title : 'The journey is complete.'}</h2><p>{currentProblem ? `${currentTopic?.title} is your current topic. Open the problem, solve it, then mark it complete to move the graph forward.` : 'Every required problem is complete.'}</p>{currentProblem && <Link className="text-link" to={`/topic/${currentTopic!.slug}?problem=${currentProblem.id}`}>Open the next problem <ArrowUpRight size={13} /></Link>}</div>
+        <div className="snapshot-copy"><span className="mono section-kicker">YOUR NEXT MOVE</span><h2>{currentProblem ? currentProblem.title : 'The journey is complete.'}</h2><p>{currentProblem ? `${currentTopic?.title} is your current topic. Open the problem, solve it, then mark it complete to move the graph forward.` : 'Every required problem is complete.'}</p>{currentProblem && <Link className="text-link" to={`/topic/${currentTopic.slug}?problem=${currentProblem.id}`}>Open the next problem <ArrowUpRight size={13} /></Link>}</div>
         <div className="snapshot-stats"><div><span className="mono">PROBLEMS</span><strong>{solved.size}<small>/ {problems.length}</small></strong></div><div><span className="mono">TOPICS</span><strong>{completedTopics}<small>/ {topics.length}</small></strong></div></div>
       </section>
     </section>

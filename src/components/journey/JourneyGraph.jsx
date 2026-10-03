@@ -5,9 +5,9 @@ import { useJourneyPaths } from '../../hooks/useJourneyPaths'
 import { useHorizontalLenis } from '../../hooks/useHorizontalLenis'
 import { GraphTopicLane } from './GraphTopicLane'
 
-export function JourneyGraph({ solved }: { solved: Set<string> }) {
-  const graphViewportRef = useRef<HTMLDivElement | null>(null)
-  const graphRef = useRef<HTMLDivElement | null>(null)
+export function JourneyGraph({ solved }) {
+  const graphViewportRef = useRef(null)
+  const graphRef = useRef(null)
   useHorizontalLenis(graphViewportRef, graphRef)
   const paths = useJourneyPaths(graphRef, solved)
   const currentTopic = getCurrentTopic(topics, problems, solved)

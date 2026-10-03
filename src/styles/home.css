@@ -1,17 +1,17 @@
 .home-page { overflow: hidden; }
-.hero-shell { margin: 34px; min-height: 690px; position: relative; overflow: hidden; background: #090909; }
-.hero-grid { position: absolute; inset: 0; opacity: .3; background-image: radial-gradient(circle at 1px 1px, #302e2b 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(to bottom, rgba(0,0,0,.75), transparent 85%); }
+.hero-shell { margin: 34px; min-height: 690px; position: relative; overflow: hidden; background: var(--bg); }
+.hero-grid { position: absolute; inset: 0; opacity: .3; background-image: radial-gradient(circle at 1px 1px, var(--hero-grid) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(to bottom, color-mix(in srgb, var(--bg) 78%, transparent), transparent 85%); }
 .hero-copy { max-width: 970px; padding: 88px 58px 40px; position: relative; z-index: 4; }
 .hero-kicker { color: var(--muted); font-size: 10px; letter-spacing: .13em; }
 .hero-copy h1 { font-size: clamp(60px, 8.5vw, 126px); max-width: 1100px; margin: 20px 0 34px; }
 .hero-copy h1 span { color: var(--accent); }
-.hero-lead { max-width: 690px; color: #b1aca3; font-size: 17px; line-height: 1.55; margin-bottom: 30px; }
+.hero-lead { max-width: 690px; color: var(--hero-lead); font-size: 17px; line-height: 1.55; margin-bottom: 30px; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 6; width: max-content; background: var(--bg); padding-right: 10px; }
 .hero-actions .button { position: relative; z-index: 7; }
 .hero-note { position: absolute; right: 54px; top: 104px; width: 220px; z-index: 2; }
 .hero-note::before { content: ''; display: block; height: 1px; background: var(--line); margin-bottom: 14px; }
 .hero-note .mono { color: var(--faint); font-size: 9px; }
-.hero-note p { margin: 9px 0 0; color: #d0cbc1; font-size: 15px; line-height: 1.55; }
+.hero-note p { margin: 9px 0 0; color: var(--hero-note); font-size: 15px; line-height: 1.55; }
 .hero-foot { position: absolute; left: 58px; right: 58px; bottom: 28px; z-index: 2; border-top: 1px solid var(--line); padding-top: 15px; display: flex; justify-content: space-between; gap: 18px; color: var(--faint); font-size: 9px; }
 .hero-foot strong { color: var(--ink); font-weight: 500; }
 .home-section { padding: 105px 64px; border-top: 1px solid var(--line); display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; }

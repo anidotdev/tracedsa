@@ -1,8 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import { resources } from '../../data/curriculum'
-import type { Topic } from '../../types/domain'
 
-export function ResourcesForTopic({ topic }: { topic: Topic }) {
+export function ResourcesForTopic({ topic }) {
   const items = resources.filter((item) => item.topic_id === topic.id)
   return (
     <div className="aside-resources">

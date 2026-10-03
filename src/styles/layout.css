@@ -20,3 +20,20 @@
 .built-links { display: flex; gap: 20px; }
 .built-links a { color: var(--muted); font-size: 10px; }
 .built-links a:hover { color: var(--ink); }
+
+.theme-toggle {
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  transition: color .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+  background: var(--surface-2);
+}
