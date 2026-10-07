@@ -166,9 +166,9 @@ export function HomePage({ solved }) {
 
           <Link
             className="text-link"
-            to="/cloud/what-is-a-server"
+            to="/cloud"
           >
-            Start the first lesson <ArrowUpRight size={13} />
+            Start the Cloud course <ArrowUpRight size={13} />
           </Link>
         </div>
 

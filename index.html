@@ -40,10 +40,14 @@
     <meta name="twitter:image" content="https://tracedsa.pages.dev/og-image.png" />
 
     <!-- Cloudflare Web Analytics -->
-    <script
-      type="module"
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "c2c9a349cec6417c8f9636a164277e05"}'>
+    <script>
+      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        const script = document.createElement('script')
+        script.defer = true
+        script.src = 'https://static.cloudflareinsights.com/beacon.min.js'
+        script.setAttribute('data-cf-beacon', '{"token":"c2c9a349cec6417c8f9636a164277e05"}')
+        document.head.appendChild(script)
+      }
     </script>
     <!-- End Cloudflare Web Analytics -->
   </head>

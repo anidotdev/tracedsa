@@ -3,7 +3,10 @@ import { getCloudContent } from '../content/cloud/content'
 export const cloudChapters = [
   {
     number: '01',
+    slug: 'what-actually-is-cloud',
     title: 'What Actually Is Cloud?',
+    description:
+      'Understand servers, data centers, cloud computing, virtualization, and the infrastructure underneath modern applications.',
     lessons: [
       {
         number: '01.1',

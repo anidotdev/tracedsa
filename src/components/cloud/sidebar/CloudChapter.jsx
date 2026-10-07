@@ -26,6 +26,7 @@ export function CloudChapter({ chapter, activeSlug }) {
           <CloudLessonLink
             key={lesson.slug}
             lesson={lesson}
+            chapter={chapter}
             active={lesson.slug === activeSlug}
           />
         ))}
