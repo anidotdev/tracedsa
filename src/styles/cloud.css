@@ -52,13 +52,13 @@
 
 .cloud-chapter-toggle svg {
   flex: 0 0 auto;
-  color: #5c5751;
+  color: var(--muted);
   transition: transform 0.18s ease, color 0.18s ease;
 }
 
 .cloud-chapter.open .cloud-chapter-toggle svg {
   transform: rotate(180deg);
-  color: #37332f;
+  color: var(--ink);
 }
 
 .cloud-chapter-title {
@@ -69,7 +69,7 @@
 }
 
 .cloud-chapter-title .mono {
-  color: #5c5751;
+  color: var(--muted);
   font-size: 10px;
   padding-top: 2px;
 }
@@ -103,7 +103,7 @@
   min-height: 38px;
   padding: 0 9px;
   border-left: 1px solid transparent;
-  color: #37332f;
+  color: var(--ink);
   font-size: 12px;
   transition:
     color 0.18s ease,
@@ -112,7 +112,7 @@
 }
 
 .cloud-lesson-link .mono {
-  color: #5c5751;
+  color: var(--muted);
   font-size: 9px;
 }
 
@@ -174,7 +174,7 @@
 
 .cloud-markdown > p {
   margin: 0 0 19px;
-  color: #2f2b27;
+  color: var(--ink);
   font-size: 15px;
   line-height: 1.8;
 }
@@ -209,7 +209,7 @@
 }
 
 .cloud-section-label {
-  color: #5c5751;
+  color: var(--muted);
   font-size: 9px;
   letter-spacing: 0.13em;
 }
@@ -220,7 +220,7 @@
   gap: 9px;
   margin: 22px 0 28px;
   padding-left: 22px;
-  color: #37332f;
+  color: var(--ink);
   font-size: 14px;
   line-height: 1.7;
 }
@@ -232,7 +232,7 @@
 
 .cloud-number-list li::marker,
 .cloud-bullet-list li::marker {
-  color: #5c5751;
+  color: var(--muted);
   font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 10px;
 }
@@ -252,7 +252,7 @@
   overflow-x: auto;
   border: 1px solid var(--line);
   background: var(--surface-2);
-  color: #3f3a35;
+  color: var(--ink);
   font:
     12px/1.75 'Geist Mono',
     ui-monospace,
@@ -271,14 +271,14 @@
 }
 
 .cloud-note .mono {
-  color: #5c5751;
+  color: var(--muted);
   font-size: 9px;
   padding-top: 3px;
 }
 
 .cloud-note p {
   margin: 0;
-  color: #2f2b27;
+  color: var(--ink);
   font-size: 14px;
   line-height: 1.75;
 }
@@ -293,7 +293,7 @@
   width: 100%;
   min-width: 560px;
   border-collapse: collapse;
-  color: #37332f;
+  color: var(--ink);
   font-size: 13px;
   line-height: 1.65;
 }
