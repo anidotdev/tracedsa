@@ -1,0 +1,414 @@
+.cloud-page {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 58px;
+  align-items: stretch;
+}
+
+.cloud-sidebar {
+  min-width: 0;
+  border-right: 1px solid var(--line);
+}
+
+.cloud-sidebar-inner {
+  position: sticky;
+  top: 32px;
+  padding-right: 26px;
+  padding-bottom: 40px;
+}
+
+.cloud-sidebar-head {
+  display: grid;
+  gap: 7px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cloud-sidebar-head strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.cloud-chapter-list {
+  display: grid;
+}
+
+.cloud-chapter {
+  padding-top: 17px;
+}
+
+.cloud-chapter-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+}
+
+.cloud-chapter-toggle svg {
+  flex: 0 0 auto;
+  color: var(--faint);
+  transition: transform .18s ease, color .18s ease;
+}
+
+.cloud-chapter.open .cloud-chapter-toggle svg {
+  transform: rotate(180deg);
+  color: var(--muted);
+}
+
+.cloud-chapter-title {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+
+.cloud-chapter-title .mono {
+  color: var(--faint);
+  font-size: 10px;
+  padding-top: 2px;
+}
+
+.cloud-chapter-title strong {
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.cloud-lesson-list {
+  display: grid;
+  gap: 2px;
+  margin-top: 12px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .2s ease, opacity .18s ease;
+}
+
+.cloud-chapter.open .cloud-lesson-list {
+  max-height: 600px;
+  opacity: 1;
+}
+
+.cloud-lesson-link {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 8px;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 9px;
+  border-left: 1px solid transparent;
+  color: var(--muted);
+  font-size: 12px;
+  transition: color .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.cloud-lesson-link .mono {
+  color: var(--faint);
+  font-size: 9px;
+}
+
+.cloud-lesson-link:hover {
+  color: var(--ink);
+}
+
+.cloud-lesson-link.active {
+  color: var(--ink);
+  border-left-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.cloud-lesson-link.active .mono {
+  color: var(--accent);
+}
+
+.cloud-lesson {
+  min-width: 0;
+  max-width: 860px;
+}
+
+.cloud-lesson-header {
+  padding-bottom: 44px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cloud-lesson-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 12px 0 20px;
+}
+
+.cloud-lesson-number {
+  color: var(--accent);
+  font-size: 11px;
+  padding-top: 9px;
+  flex: 0 0 auto;
+}
+
+.cloud-lesson-header h1 {
+  margin: 0;
+  font-size: clamp(46px, 6vw, 82px);
+}
+
+.cloud-markdown {
+  padding-top: 10px;
+}
+
+.cloud-markdown > p,
+.cloud-markdown > ul,
+.cloud-markdown > ol,
+.cloud-markdown > .cloud-diagram,
+.cloud-markdown > .cloud-note,
+.cloud-markdown > .cloud-table-wrap {
+  max-width: 760px;
+}
+
+.cloud-markdown > p {
+  margin: 0 0 19px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.cloud-markdown > p:first-child {
+  padding-top: 36px;
+}
+
+.cloud-markdown strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.cloud-markdown-section {
+  padding: 42px 0 16px;
+  border-top: 1px solid var(--line);
+}
+
+.cloud-markdown-section h2 {
+  margin: 8px 0 20px;
+  font-size: clamp(27px, 3vw, 39px);
+}
+
+.cloud-markdown-section.feynman,
+.cloud-markdown-section.practice {
+  padding-bottom: 0;
+}
+
+.cloud-markdown-section.feynman + .cloud-number-list,
+.cloud-markdown-section.practice + .cloud-number-list {
+  margin-top: 0;
+}
+
+.cloud-section-label {
+  color: var(--faint);
+  font-size: 9px;
+  letter-spacing: .13em;
+}
+
+.cloud-bullet-list,
+.cloud-number-list {
+  display: grid;
+  gap: 9px;
+  margin: 22px 0 28px;
+  padding-left: 22px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.cloud-number-list li,
+.cloud-bullet-list li {
+  padding-left: 4px;
+}
+
+.cloud-number-list li::marker,
+.cloud-bullet-list li::marker {
+  color: var(--faint);
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 10px;
+}
+
+.cloud-markdown h3 {
+  max-width: 760px;
+  margin: 30px 0 12px;
+  font-size: 19px;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+
+.cloud-diagram {
+  margin: 26px 0 32px;
+  padding: 20px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--muted);
+  font: 12px/1.75 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.cloud-note {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  gap: 12px;
+  margin: 26px 0 32px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.cloud-note .mono {
+  color: var(--faint);
+  font-size: 9px;
+  padding-top: 3px;
+}
+
+.cloud-note p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.cloud-table-wrap {
+  overflow-x: auto;
+  margin: 26px 0 34px;
+  border: 1px solid var(--line);
+}
+
+.cloud-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.cloud-table th,
+.cloud-table td {
+  padding: 16px 18px;
+  text-align: left;
+  vertical-align: top;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.cloud-table th:last-child,
+.cloud-table td:last-child {
+  border-right: 0;
+}
+
+.cloud-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.cloud-table th {
+  color: var(--ink);
+  background: var(--surface-2);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .05em;
+}
+
+@media (max-width: 900px) {
+  .cloud-page {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .cloud-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cloud-sidebar-inner {
+    position: static;
+    padding-right: 0;
+    padding-bottom: 20px;
+  }
+
+  .cloud-sidebar-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+  }
+
+  .cloud-chapter {
+    padding-top: 15px;
+  }
+
+  .cloud-chapter-title strong {
+    font-size: 13px;
+  }
+
+  .cloud-lesson-link {
+    min-height: 38px;
+    padding-left: 9px;
+    font-size: 12px;
+  }
+
+  .cloud-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .cloud-page {
+    gap: 26px;
+  }
+
+  .cloud-sidebar-inner {
+    padding-bottom: 16px;
+  }
+
+  .cloud-lesson-header {
+    padding-bottom: 34px;
+  }
+
+  .cloud-lesson-title-row {
+    gap: 10px;
+  }
+
+  .cloud-lesson-number {
+    padding-top: 7px;
+    font-size: 10px;
+  }
+
+  .cloud-lesson-header h1 {
+    font-size: 45px;
+    line-height: .98;
+  }
+
+  .cloud-markdown > p,
+  .cloud-note p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .cloud-markdown > p:first-child {
+    padding-top: 32px;
+  }
+
+  .cloud-markdown-section {
+    padding-top: 36px;
+  }
+
+  .cloud-markdown-section h2 {
+    font-size: 29px;
+  }
+
+  .cloud-bullet-list,
+  .cloud-number-list {
+    font-size: 14px;
+  }
+
+  .cloud-note {
+    grid-template-columns: 46px minmax(0, 1fr);
+  }
+}

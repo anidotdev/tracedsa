@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { AppShell } from './components/layout/AppShell'
 import { demoSolvedIds, demoXp, problems, topics } from './data/curriculum'
 import { AuthPage } from './pages/AuthPage'
+import { CloudPage } from './pages/CloudPage'
 import { HomePage } from './pages/HomePage'
 import { JourneyPage } from './pages/JourneyPage'
 import { ProblemsPage } from './pages/ProblemsPage'
@@ -201,6 +202,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage solved={solved} />} />
         <Route path="/journey" element={<JourneyPage solved={solved} />} />
+        <Route path="/cloud/*" element={<CloudPage />} />
         <Route path="/problems" element={<ProblemsPage solved={solved} onSolved={handleSolved} />} />
         <Route path="/resources" element={<ResourcesPage />} />
         <Route path="/profile" element={<ProfilePage userName={userName} xp={xp} solved={solved} />} />

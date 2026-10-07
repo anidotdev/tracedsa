@@ -40,6 +40,7 @@ export function AppShell({ children, xp, userName, logout }) {
         <nav className={navClass}>
           <NavItem to="/" label="Home" />
           <NavItem to="/journey" label="Journey" />
+          <NavItem to="/cloud" label="Cloud" />
           <NavItem to="/problems" label="Problems" />
           <NavItem to="/resources" label="Resources" />
         </nav>
