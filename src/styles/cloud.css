@@ -52,13 +52,13 @@
 
 .cloud-chapter-toggle svg {
   flex: 0 0 auto;
-  color: var(--faint);
-  transition: transform .18s ease, color .18s ease;
+  color: #5c5751;
+  transition: transform 0.18s ease, color 0.18s ease;
 }
 
 .cloud-chapter.open .cloud-chapter-toggle svg {
   transform: rotate(180deg);
-  color: var(--muted);
+  color: #37332f;
 }
 
 .cloud-chapter-title {
@@ -69,7 +69,7 @@
 }
 
 .cloud-chapter-title .mono {
-  color: var(--faint);
+  color: #5c5751;
   font-size: 10px;
   padding-top: 2px;
 }
@@ -87,7 +87,7 @@
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height .2s ease, opacity .18s ease;
+  transition: max-height 0.2s ease, opacity 0.18s ease;
 }
 
 .cloud-chapter.open .cloud-lesson-list {
@@ -103,13 +103,16 @@
   min-height: 38px;
   padding: 0 9px;
   border-left: 1px solid transparent;
-  color: var(--muted);
+  color: #37332f;
   font-size: 12px;
-  transition: color .18s ease, border-color .18s ease, background .18s ease;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
 }
 
 .cloud-lesson-link .mono {
-  color: var(--faint);
+  color: #5c5751;
   font-size: 9px;
 }
 
@@ -171,7 +174,7 @@
 
 .cloud-markdown > p {
   margin: 0 0 19px;
-  color: var(--muted);
+  color: #2f2b27;
   font-size: 15px;
   line-height: 1.8;
 }
@@ -206,9 +209,9 @@
 }
 
 .cloud-section-label {
-  color: var(--faint);
+  color: #5c5751;
   font-size: 9px;
-  letter-spacing: .13em;
+  letter-spacing: 0.13em;
 }
 
 .cloud-bullet-list,
@@ -217,7 +220,7 @@
   gap: 9px;
   margin: 22px 0 28px;
   padding-left: 22px;
-  color: var(--muted);
+  color: #37332f;
   font-size: 14px;
   line-height: 1.7;
 }
@@ -229,8 +232,8 @@
 
 .cloud-number-list li::marker,
 .cloud-bullet-list li::marker {
-  color: var(--faint);
-  font-family: 'Geist Mono', ui-monospace, monospace;
+  color: #5c5751;
+  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 10px;
 }
 
@@ -240,7 +243,7 @@
   font-size: 19px;
   line-height: 1.3;
   font-weight: 500;
-  letter-spacing: -.02em;
+  letter-spacing: -0.02em;
 }
 
 .cloud-diagram {
@@ -249,8 +252,13 @@
   overflow-x: auto;
   border: 1px solid var(--line);
   background: var(--surface-2);
-  color: var(--muted);
-  font: 12px/1.75 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #3f3a35;
+  font:
+    12px/1.75 'Geist Mono',
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
 }
 
 .cloud-note {
@@ -263,14 +271,14 @@
 }
 
 .cloud-note .mono {
-  color: var(--faint);
+  color: #5c5751;
   font-size: 9px;
   padding-top: 3px;
 }
 
 .cloud-note p {
   margin: 0;
-  color: var(--ink);
+  color: #2f2b27;
   font-size: 14px;
   line-height: 1.75;
 }
@@ -285,7 +293,7 @@
   width: 100%;
   min-width: 560px;
   border-collapse: collapse;
-  color: var(--muted);
+  color: #37332f;
   font-size: 13px;
   line-height: 1.65;
 }
@@ -313,7 +321,7 @@
   background: var(--surface-2);
   font-weight: 500;
   font-size: 11px;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 900px) {
@@ -382,7 +390,7 @@
 
   .cloud-lesson-header h1 {
     font-size: 45px;
-    line-height: .98;
+    line-height: 0.98;
   }
 
   .cloud-markdown > p,

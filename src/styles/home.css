@@ -1,4 +1,7 @@
 .home-page { overflow: hidden; }
+.hero-accent {
+  color: var(--accent);
+}
 .hero-shell { margin: 34px; min-height: 690px; position: relative; overflow: hidden; background: var(--bg); }
 .hero-grid { position: absolute; inset: 0; opacity: .3; background-image: radial-gradient(circle at 1px 1px, var(--hero-grid) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(to bottom, color-mix(in srgb, var(--bg) 78%, transparent), transparent 85%); }
 .hero-copy { max-width: 970px; padding: 88px 58px 40px; position: relative; z-index: 4; }
