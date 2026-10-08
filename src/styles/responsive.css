@@ -1,11 +1,6 @@
 @media (max-width: 1100px) {
   .app-shell { width: calc(100% - 26px); margin: 13px auto; min-height: calc(100vh - 26px); }
   .page { padding: 56px 28px 78px; }
-  .home-section { padding: 78px 28px; gap: 50px; }
-  .hero-shell { margin: 14px; min-height: 620px; }
-  .hero-copy { padding: 70px 38px 40px; }
-  .hero-note { right: 38px; }
-  .hero-foot { left: 38px; right: 38px; }
   .companies-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .company-page-header { gap: 36px; }
 }
@@ -16,12 +11,6 @@
   .nav-links.nav-open { display: flex; }
   .mobile-menu { display: inline-flex; }
   .logout-btn span { display: none; }
-  .hero-note { position: relative; right: auto; top: auto; width: auto; margin: 0 38px; padding-top: 22px; }
-  .hero-note p br { display: none; }
-  .hero-foot { position: relative; left: auto; right: auto; bottom: auto; margin: 48px 38px 0; }
-  .hero-shell { min-height: auto; padding-bottom: 34px; }
-  .home-section { grid-template-columns: 1fr; }
-  .home-snapshot { grid-template-columns: 1fr; }
   .companies-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .company-page-header { align-items: start; flex-direction: column; }
   .company-page-stats { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -35,12 +24,6 @@
 @media (max-width: 560px) {
   .page { padding: 44px 18px 64px; }
   h1 { font-size: 48px; }
-  .hero-copy h1 { font-size: 52px; }
-  .hero-copy { padding: 58px 22px 28px; }
-  .hero-lead { font-size: 15px; }
-  .hero-note { margin: 0 22px; }
-  .hero-foot { margin: 38px 22px 0; display: grid; gap: 7px; }
-  .home-section { padding: 58px 18px; }
   .companies-grid { grid-template-columns: 1fr; }
   .company-card { min-height: 220px; }
   .company-page-brand { grid-template-columns: 72px minmax(0, 1fr); gap: 16px; }

@@ -71,13 +71,13 @@ export function AuthPage({ onAuthed }) {
   }
 
   let kicker = 'WELCOME BACK'
-  let title = 'Continue the path.'
+  let title = 'Continue learning.'
   let buttonText = 'Login'
   let switchText = 'Need an account? Sign up'
 
   if (mode === 'signup') {
     kicker = 'CREATE ACCOUNT'
-    title = 'Start the path.'
+    title = 'Start learning.'
     buttonText = 'Sign up'
     switchText = 'Already have an account? Login'
   }
@@ -89,7 +89,7 @@ export function AuthPage({ onAuthed }) {
         <Link to="/" className="auth-brand mono">KISOKATA</Link>
         <span className="mono section-kicker">{kicker}</span>
         <h1>{title}</h1>
-        <p className="lead">Your position is derived from what you have actually solved.</p>
+        <p className="lead">Access Cloud lessons and interview intelligence from your KisoKata account.</p>
 
         <form onSubmit={submit}>
           <label>

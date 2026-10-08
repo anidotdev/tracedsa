@@ -80,10 +80,6 @@ export default function App() {
         <Route path="/companies" element={<CompaniesPage />} />
         <Route path="/companies/:companySlug" element={<CompanyPage />} />
         <Route path="/profile" element={<ProfilePage userName={userName} />} />
-        <Route path="/journey" element={<Navigate to="/companies" replace />} />
-        <Route path="/problems" element={<Navigate to="/companies" replace />} />
-        <Route path="/resources" element={<Navigate to="/cloud" replace />} />
-        <Route path="/topic/:slug" element={<Navigate to="/companies" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AppShell>

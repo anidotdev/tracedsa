@@ -32,7 +32,6 @@ export function CompanyPage() {
               <img
                 src={company.logo}
                 alt={`${company.name} logo`}
-                className={company.invertInDark ? 'invert-dark' : ''}
                 onError={() => setLogoFailed(true)}
               />
             )}

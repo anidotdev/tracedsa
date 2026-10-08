@@ -13,9 +13,6 @@
 .company-logo-wrap { min-height: 96px; display: grid; place-items: center; padding: 18px 0; }
 .company-logo { grid-area: 1 / 1; max-width: 110px; max-height: 70px; width: auto; height: auto; object-fit: contain; }
 .company-logo-fallback, .company-page-logo > span { width: 58px; height: 58px; display: grid; place-items: center; border: 1px solid var(--line-strong); font: 500 18px 'Geist Mono', monospace; }
-html:not([data-theme='light']) .invert-dark {
-  filter: brightness(0) invert(1);
-}
 .company-card-bottom { display: grid; gap: 8px; }
 .company-card-bottom h2 { margin: 0; font-size: 22px; letter-spacing: -.04em; }
 .company-card-bottom .mono { color: var(--faint); font-size: 7px; }
@@ -52,3 +49,5 @@ html:not([data-theme='light']) .invert-dark {
 .interview-report-meta span + span::before { content: '·'; margin-right: 9px; }
 .interview-source { color: var(--faint); font: 8px 'Geist Mono', monospace; letter-spacing: .03em; }
 .company-bottom-link { margin-top: 30px; }
+
+

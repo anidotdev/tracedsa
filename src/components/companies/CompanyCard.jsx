@@ -27,7 +27,7 @@ export function CompanyCard({ company }) {
           <img
             src={company.logo}
             alt={`${company.name} logo`}
-            className={`company-logo${company.invertInDark ? ' invert-dark' : ''}`}
+            className="company-logo"
             loading="lazy"
             decoding="async"
             onError={() => setLogoFailed(true)}
