@@ -1,6 +1,6 @@
 .boot-screen { min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--ink); }
 .auth-screen { min-height: 100vh; display: grid; place-items: center; background: var(--auth-overlay); padding: 26px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-.auth-panel { width: min(500px, 100%); border: 1px solid var(--line); background: var(--topic-bg); padding: 42px; }
+.auth-panel { width: min(500px, 100%); border: 1px solid var(--line); background: var(--surface); padding: 42px; }
 .auth-brand { display: block; width: fit-content; font-size: 11px; margin-bottom: 52px; }
 .auth-panel h1 { font-size: 51px; margin: 12px 0 14px; }
 .auth-panel .lead { font-size: 13px; }

@@ -1,81 +1,21 @@
-# DSA Journey
+# KisoKata
 
-A small React + Vite DSA progression system built around a dependency graph where **topics and problems are both nodes**.
+KisoKata is a focused technical learning platform with two paths:
 
-The implementation follows the supplied brief: monochrome technical/editorial UI, derived progress, locked/current/completed states, lightweight XP, curated resources, minimal profile, and Supabase persistence without duplicating the curriculum per user.
+- Cloud: a structured course that starts from first principles and builds toward modern infrastructure.
+- Interview DSA: company-specific reported interview questions backed by an evidence dataset.
 
-## Run
+The current interview dataset contains 16 companies, 19 independent reports, 72 question-report rows, and 70 unique canonical questions. The interface starts at the company level and drills down into reported questions.
+
+## Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Without Supabase environment variables, the app runs in a local demo mode with a seeded progression so the interface can be explored immediately.
+## Company logos
 
-For Supabase mode, copy `.env.example` to `.env` and fill:
+Place the manually downloaded Brandfetch SVG assets in `public/company-logos/` using the filenames listed in `public/company-logos/README.md`.
 
-```text
-VITE_SUPABASE_URL=...
-VITE_SUPABASE_PUBLISHABLE_KEY=...
-# VITE_SUPABASE_ANON_KEY is also supported for backwards compatibility.
-```
-
-Then run `supabase/schema.sql` followed by `supabase/seed.sql` in the Supabase SQL editor.
-
-## Replace builder links
-
-Edit `src/lib/config.js`. The `APP_CONFIG` object contains the four `YOUR_*_URL` placeholders and the display name used by the small Built By footer.
-
-## Important implementation note
-
-Problem state is derived from solved rows and order/dependency data. There are no per-user rows for unsolved problems, no user-topic progress table, no XP history table, and no analytics/event log.
-
-
-## UI revision
-
-The latest revision separates the marketing-style home screen from the progression journey. The home screen contains the product copy and primary actions; the dependency graph lives on `/journey`. Desktop uses a horizontal graph with DOM-measured SVG connections, while mobile switches the same graph into a vertical sequence. The Problems page is topic-first and expands problems on click. Topic detail pages use bordered problem boxes with a restrained black / off-white / coral theme.
-
-## Code organization
-
-The UI is split into page modules, reusable components, hooks, data, domain logic, persistence, and CSS layers. `src/App.jsx` owns only application state and routing orchestration.
-
-```text
-src/
-├── App.jsx
-├── components/
-│   ├── journey/
-│   ├── layout/
-│   ├── problems/
-│   └── resources/
-├── hooks/
-│   ├── useJourneyPaths.js
-│   ├── useHorizontalLenis.js
-│   └── useTheme.js
-├── lib/
-│   ├── config.js
-│   ├── problemLinks.js
-│   ├── progress.js
-│   ├── storage.js
-│   └── supabase.js
-├── pages/
-└── styles/
-    ├── index.css
-    ├── tokens.css
-    ├── base.css
-    ├── layout.css
-    ├── home.css
-    ├── journey.css
-    ├── detail.css
-    ├── lists.css
-    ├── profile.css
-    ├── auth.css
-    └── responsive.css
-```
-
-The graph connection layer is an SVG whose paths are recalculated from the rendered node positions using `ResizeObserver` and `getBoundingClientRect`, so the connections follow the actual layout rather than hardcoded coordinates.
-
-The interface supports both dark and light themes and remembers the selected theme in the browser.
-
-### Horizontal graph scrolling
-The desktop Journey graph uses Lenis for smooth horizontal scrolling with the graph viewport as a custom wrapper. Mobile keeps the existing vertical graph layout.
+The logos are stored locally and rendered by the app; there is no runtime dependency on a Brandfetch API request.

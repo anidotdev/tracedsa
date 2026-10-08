@@ -361,9 +361,6 @@
     font-size: 12px;
   }
 
-  .cloud-info-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 560px) {

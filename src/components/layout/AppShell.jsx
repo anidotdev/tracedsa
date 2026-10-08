@@ -6,7 +6,7 @@ import { NavItem } from './NavItem'
 import { LogoutDialog } from './LogoutDialog'
 import { ThemeToggle } from './ThemeToggle'
 
-export function AppShell({ children, xp, userName, logout }) {
+export function AppShell({ children, userName, logout }) {
   const [mobileNav, setMobileNav] = useState(false)
   const [logoutOpen, setLogoutOpen] = useState(false)
 
@@ -35,22 +35,16 @@ export function AppShell({ children, xp, userName, logout }) {
   return (
     <div className="app-shell">
       <header className="top-nav">
-        <Link to="/" className="brand">TRACE</Link>
+        <Link to="/" className="brand">KISOKATA</Link>
 
         <nav className={navClass}>
           <NavItem to="/" label="Home" />
-          <NavItem to="/journey" label="Journey" />
           <NavItem to="/cloud" label="Cloud" />
-          <NavItem to="/problems" label="Problems" />
-          <NavItem to="/resources" label="Resources" />
+          <NavItem to="/companies" label="Companies" />
         </nav>
 
         <div className="nav-right">
           <ThemeToggle />
-          <Link to="/profile" className="xp-link">
-            <span className="mono">XP</span>
-            <strong>{xp}</strong>
-          </Link>
           <Link
             to="/profile"
             className="profile-chip"

@@ -5,8 +5,6 @@
 .nav-link { color: var(--muted); font-size: 14px; transition: color .18s ease; }
 .nav-link:hover, .nav-link.active { color: var(--ink); }
 .nav-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
-.xp-link { display: inline-flex; align-items: baseline; gap: 8px; color: var(--muted); font-size: 11px; }
-.xp-link strong { color: var(--ink); font: 500 13px 'Geist Mono', monospace; }
 .profile-chip { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--line-strong); font: 10px 'Geist Mono', monospace; }
 .logout-btn, .mobile-menu { border: 0; background: transparent; color: var(--muted); display: inline-flex; align-items: center; gap: 5px; font-size: 12px; }
 .logout-btn:hover, .mobile-menu:hover { color: var(--ink); }
@@ -20,20 +18,5 @@
 .built-links { display: flex; gap: 20px; }
 .built-links a { color: var(--muted); font-size: 11px; }
 .built-links a:hover { color: var(--ink); }
-
-.theme-toggle {
-  width: 28px;
-  height: 28px;
-  display: inline-grid;
-  place-items: center;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--muted);
-  transition: color .18s ease, border-color .18s ease, background .18s ease;
-}
-
-.theme-toggle:hover {
-  color: var(--ink);
-  border-color: var(--line-strong);
-  background: var(--surface-2);
-}
+.theme-toggle { width: 28px; height: 28px; display: inline-grid; place-items: center; border: 1px solid transparent; background: transparent; color: var(--muted); transition: color .18s ease, border-color .18s ease, background .18s ease; }
+.theme-toggle:hover { color: var(--ink); border-color: var(--line-strong); background: var(--surface-2); }

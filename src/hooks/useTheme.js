@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const THEME_KEY = 'trace:theme'
+const THEME_KEY = 'kisokata:theme'
 const DEFAULT_THEME = 'dark'
 
 function getStoredTheme() {

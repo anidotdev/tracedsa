@@ -1,32 +1,20 @@
-import { problems, topics } from '../data/curriculum'
-import { getTopicStatus } from '../lib/progress'
-
-export function ProfilePage({ userName, xp, solved }) {
-  let completedTopics = 0
-
-  for (const topic of topics) {
-    const status = getTopicStatus(topic, topics, problems, solved)
-    if (status === 'COMPLETED') {
-      completedTopics += 1
-    }
-  }
-
+export function ProfilePage({ userName }) {
   return (
     <section className="page profile-page">
       <span className="mono section-kicker">PROFILE</span>
       <h1>{userName}</h1>
-      <div className="profile-stats">
+
+      <div className="profile-account">
         <div>
-          <span className="mono">XP</span>
-          <strong>{xp}</strong>
+          <span className="mono">ACCOUNT</span>
+          <strong>{userName}</strong>
+          <p>Your KisoKata account is used for authentication and access to the platform.</p>
         </div>
+
         <div>
-          <span className="mono">PROBLEMS</span>
-          <strong>{solved.size}<small> / {problems.length}</small></strong>
-        </div>
-        <div>
-          <span className="mono">TOPICS</span>
-          <strong>{completedTopics}<small> / {topics.length}</small></strong>
+          <span className="mono">CURRENT PATHS</span>
+          <strong>Cloud + Interview DSA</strong>
+          <p>Learn the infrastructure, then use reported interview questions to prepare with better signal.</p>
         </div>
       </div>
     </section>

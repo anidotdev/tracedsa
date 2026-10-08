@@ -1,31 +1,36 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { problems, topics } from '../data/curriculum'
+import { companies, interviewQuestions } from '../data/interviews'
 import { cloudLessons } from '../data/cloud'
-import {
-  getCurrentProblem,
-  getCurrentTopic,
-  getTopicStatus,
-} from '../lib/progress'
 
-export function HomePage({ solved }) {
-  const currentTopic = getCurrentTopic(topics, problems, solved)
-  const currentProblem = getCurrentProblem(currentTopic, problems, solved)
-
-  let completedTopics = 0
-
-  for (const topic of topics) {
-    const status = getTopicStatus(topic, topics, problems, solved)
-
-    if (status === 'COMPLETED') {
-      completedTopics += 1
-    }
-  }
-
+export function HomePage() {
   return (
     <section className="home-page">
       <div className="hero-shell">
         <div className="hero-grid" aria-hidden="true" />
+
+        <div className="cloud-floats" aria-hidden="true">
+          <img
+            className="cloud-float cloud-float-azure"
+            src="/cloud-logos/azure.png"
+            alt=""
+          />
+          <img
+            className="cloud-float cloud-float-aws"
+            src="/cloud-logos/aws.png"
+            alt=""
+          />
+          <img
+            className="cloud-float cloud-float-google"
+            src="/cloud-logos/google-cloud.png"
+            alt=""
+          />
+          <img
+            className="cloud-float cloud-float-oracle"
+            src="/cloud-logos/oracle.png"
+            alt=""
+          />
+        </div>
 
         <div className="hero-copy">
           <span className="hero-kicker mono">
@@ -39,65 +44,44 @@ export function HomePage({ solved }) {
           </h1>
 
           <p className="hero-lead">
-            Structured learning paths for Cloud and DSA. Learn what you need,
-            understand where you are, and know what to work on next.
+            Learn Cloud from first principles, then prepare for DSA interviews
+            using questions reported from real interview experiences.
           </p>
 
           <div className="hero-actions">
-            <Link
-              className="button button-accent"
-              to="/cloud"
-            >
+            <Link className="button button-accent" to="/cloud">
               Start Cloud <ArrowRight size={15} />
             </Link>
 
-            <Link
-              className="button button-outline"
-              to="/journey"
-            >
-              Explore DSA <ArrowUpRight size={14} />
+            <Link className="button button-outline" to="/companies">
+              Explore Companies <ArrowUpRight size={14} />
             </Link>
           </div>
         </div>
 
-        <div className="hero-note">
-          <span className="mono">THE IDEA</span>
-
-          <p>
-            Less browsing.
-            <br />
-            More learning.
-            <br />
-            One clear next step.
-          </p>
-        </div>
-
         <div className="hero-foot">
-          <span className="mono">
-            CLOUD IS THE MAIN PATH
-          </span>
+          <span className="mono">CLOUD IS THE MAIN PATH</span>
 
           <span className="mono">
             <strong>{cloudLessons.length}</strong> lessons ·{' '}
-            <strong>{problems.length}</strong> DSA problems
+            <strong>{companies.length}</strong> companies ·{' '}
+            <strong>{interviewQuestions.length}</strong> canonical questions
           </span>
         </div>
       </div>
 
       <section className="home-section">
         <div className="section-intro">
-          <span className="mono section-kicker">
-            THE CLOUD PATH
-          </span>
+          <span className="mono section-kicker">THE KISOKATA PATH</span>
 
           <h2>
-            Cloud is easier when the concepts come in the right order.
+            Learn the systems. Then study the questions companies actually ask.
           </h2>
 
           <p>
-            TRACE takes you from the fundamentals of servers and data centers
-            to networking, infrastructure, deployment, and architecture
-            without making you figure out what to learn next.
+            Start with the fundamentals of Cloud infrastructure. When you are
+            ready for interviews, move from generic problem lists to company
+            specific interview evidence.
           </p>
         </div>
 
@@ -107,13 +91,11 @@ export function HomePage({ solved }) {
 
             <div>
               <h3>Build the foundation</h3>
-
               <p>
                 Start with servers, data centers, cloud computing,
-                virtualization, and the infrastructure underneath everything
-                else.
+                virtualization, and the infrastructure underneath modern
+                applications.
               </p>
-
               <Link className="text-link" to="/cloud">
                 Start the Cloud course <ArrowUpRight size={13} />
               </Link>
@@ -124,12 +106,14 @@ export function HomePage({ solved }) {
             <span className="principle-no mono">02</span>
 
             <div>
-              <h3>Understand the infrastructure</h3>
-
+              <h3>Prepare with signal</h3>
               <p>
-                Move into networking, compute, storage, databases, containers,
-                security, scaling, and the systems that make applications work.
+                Pick a company and see the DSA questions reported in interview
+                experiences instead of choosing blindly from a giant problem list.
               </p>
+              <Link className="text-link" to="/companies">
+                Explore companies <ArrowUpRight size={13} />
+              </Link>
             </div>
           </div>
 
@@ -137,11 +121,10 @@ export function HomePage({ solved }) {
             <span className="principle-no mono">03</span>
 
             <div>
-              <h3>Build the system</h3>
-
+              <h3>Understand the pattern</h3>
               <p>
-                Eventually connect everything through deployment,
-                observability, reliability, and cloud architecture.
+                Every reported question is connected to a topic and technique,
+                so the dataset gives you more than a title. It gives you context.
               </p>
             </div>
           </div>
@@ -150,24 +133,17 @@ export function HomePage({ solved }) {
 
       <section className="home-section home-snapshot">
         <div className="snapshot-copy">
-          <span className="mono section-kicker">
-            START HERE
-          </span>
+          <span className="mono section-kicker">START HERE</span>
 
-          <h2>
-            What Is a Server?
-          </h2>
+          <h2>What Is a Server?</h2>
 
           <p>
-            Start with the machine that actually does the work behind a
-            service. Then move through data centers, cloud computing,
-            virtualization, and the rest of the infrastructure stack.
+            Start with the machine that actually does the work behind a service.
+            Then move through data centers, cloud computing, virtualization, and
+            the rest of the infrastructure stack.
           </p>
 
-          <Link
-            className="text-link"
-            to="/cloud"
-          >
+          <Link className="text-link" to="/cloud">
             Start the Cloud course <ArrowUpRight size={13} />
           </Link>
         </div>
@@ -175,27 +151,17 @@ export function HomePage({ solved }) {
         <div className="snapshot-stats">
           <div>
             <span className="mono">CLOUD LESSONS</span>
-
-            <strong>
-              {cloudLessons.length}
-            </strong>
+            <strong>{cloudLessons.length}</strong>
           </div>
 
           <div>
-            <span className="mono">CLOUD PATH</span>
-
-            <strong>
-              01
-              <small> chapter</small>
-            </strong>
+            <span className="mono">COMPANIES</span>
+            <strong>{companies.length}</strong>
           </div>
 
           <div>
-            <span className="mono">OTHER PATH</span>
-
-            <strong>
-              DSA
-            </strong>
+            <span className="mono">QUESTIONS</span>
+            <strong>{interviewQuestions.length}</strong>
           </div>
         </div>
       </section>

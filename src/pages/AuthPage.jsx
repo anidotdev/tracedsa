@@ -86,7 +86,7 @@ export function AuthPage({ onAuthed }) {
     <div className="auth-screen">
       <ThemeToggle className="auth-theme-toggle" />
       <div className="auth-panel">
-        <Link to="/" className="auth-brand mono">TRACE</Link>
+        <Link to="/" className="auth-brand mono">KISOKATA</Link>
         <span className="mono section-kicker">{kicker}</span>
         <h1>{title}</h1>
         <p className="lead">Your position is derived from what you have actually solved.</p>
